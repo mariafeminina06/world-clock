@@ -9,6 +9,7 @@ h2 {
 select {
   width: 100%;
   padding: 8px;
+  margin-top: 10px;
   border-radius: 5px;
   font-size: 15px;
 }

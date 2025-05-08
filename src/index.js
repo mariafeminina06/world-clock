@@ -17,6 +17,10 @@ themeButton.addEventListener("click", switchModes);
 //city data
 
 function updateTime() {
+  //local data
+  let localElement = document.querySelector(".local");
+  localElement.innerHTML = moment().format("dddd, DD MMM YYYY, HH:mm:ss");
+
   //tokyo
   let tokyoElement = document.querySelector("#tokyo");
   let tokyoDateElement = tokyoElement.querySelector(".date");

@@ -87,7 +87,8 @@ function displayNewCity(event) {
             <div class="date">${cityTime.format("dddd DD MMM YYYY")}</div>
           </div>
           <div class="time">${cityTime.format("HH:mm:ss")}</div>
-        </div>`;
+        </div>
+        <a href="/">Back to home</a>`;
   }
 }
 let citySelect = document.querySelector("#city-options");

@@ -1,3 +1,5 @@
+let timezone = null;
+
 // dark mode
 function switchModes() {
   let body = document.querySelector("body");
@@ -68,6 +70,18 @@ function updateTime() {
       .format("dddd, DD MMM YYYY");
     amsTimeElement.innerHTML = `${amsTime}`;
   }
+
+  //selectedTime
+
+  if (timezone) {
+    let cityTime = moment().tz(timezone);
+    let selectedCityDate = document.querySelector(".selectedCityDate");
+    let selectedCityTime = document.querySelector(".selectedCityTime");
+    if (selectedCityDate && selectedCityTime) {
+      selectedCityDate.innerHTML = cityTime.format("dddd, DD MMM YYY");
+      selectedCityTime.innerHTML = cityTime.format("HH:mm:ss");
+    }
+  }
 }
 
 updateTime();
@@ -76,17 +90,21 @@ setInterval(updateTime, 1000);
 //dropdown
 
 function displayNewCity(event) {
-  if (event.target.value.length > 0) {
-    let timezone = event.target.value;
+  timezone = event.target.value;
+  if (timezone.length > 0) {
     let cityName = timezone.replace("_", " ").split("/")[1];
     let cityTime = moment().tz(timezone);
     let cityElement = document.querySelector(".cities");
     cityElement.innerHTML = ` <div class="city">
           <div>
             <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("dddd DD MMM YYYY")}</div>
+            <div class="date selectedCityDate">${cityTime.format(
+              "dddd DD MMM YYYY"
+            )}</div>
           </div>
-          <div class="time">${cityTime.format("HH:mm:ss")}</div>
+          <div class="time selectedCityTime">${cityTime.format(
+            "HH:mm:ss"
+          )}</div>
         </div>
         <a href="/">Back to home</a>`;
   }
